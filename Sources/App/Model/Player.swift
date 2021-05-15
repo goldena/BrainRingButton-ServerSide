@@ -7,24 +7,27 @@
 
 import Foundation
 
-class Player {
+final class Player: CanAccessNetwork {
+    
+    // Initialized variables
     let name: String
     let id: UUID
     
-    private let token: UUID
+    private let token: UUID? = nil
     
-    var didStopGame: Bool = false
-    var isPassingRound: Bool = false
+    // Game mechanics variables
+    var didStopGame = false
+    var isPassingRound = false
     
-    var correctAnswers: Int8 = 0
+    var correctAnswers = 0
         
+    // WebSocket login check
     func checkToken(_ token: UUID) -> Bool {
         token == self.token
     }
     
-    init(name: String, id: UUID, token: UUID) {
+    init(name: String, id: UUID) {
         self.name = name
         self.id = id
-        self.token = token
     }
 }

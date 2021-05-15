@@ -12,10 +12,14 @@ func routes(_ app: Application) throws {
         guard pass == "password" else {
             return "Invalid password"
         }
+                
+//        return "Player: \(name) with UUID: \(id) has joined the lobby: \(lobby) with the token: \(token)"
+
+        let player = Player(name: name, id: id)
         
-        let token = UUID()
+        let tokenAsString = NetworkAccessController.grantAccess(for: player, to: lobby)
         
-        return "Player: \(name) with UUID: \(id) has joined the lobby: \(lobby) with the token: \(token)"
+        return ""
     }
     
     app.webSocket("socket") { req, ws in
