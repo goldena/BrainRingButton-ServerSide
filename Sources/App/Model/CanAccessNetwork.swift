@@ -1,5 +1,5 @@
 //
-//  CanAccessNetwork+Extension.swift
+//  CanAccessNetwork.swift
 //  
 //
 //  Created by Denis Goloborodko on 15.05.21.

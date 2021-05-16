@@ -1,6 +1,8 @@
 import Vapor
 
 func routes(_ app: Application) throws {
+    
+    
     app.get(":lobby", ":name", ":id", ":pass") { req -> String in
         guard let lobby = Int(req.parameters.get("lobby") ?? "Invalid lobby number"),
               let name = req.parameters.get("name"),
