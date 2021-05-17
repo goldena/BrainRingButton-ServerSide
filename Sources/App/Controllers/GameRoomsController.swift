@@ -8,22 +8,24 @@
 import Foundation
 
 final class GameRoomsController {
-    var activeGameRooms: [Int: GameController] = [:]
+    
+    var rooms: [Int: GameController] = [:]
     
     // Add game, return a new Game Room number
-    func addGameRoom() -> Int {
-        var newGameRoomKey = 0
+    func createRoom(for: GameMaster) -> Int {
+        var newRoomKey = 0
         
         while true {
-            if activeGameRooms.contains(where: { $0.key == newGameRoomKey }) {
-                newGameRoomKey += 1
+            if rooms.contains(where: { $0.key == newRoomKey }) {
+                newRoomKey += 1
             } else {
-                return newGameRoomKey
+                rooms[newRoomKey] = GameController()
+                return newRoomKey
             }
         }
     }
     
-    func removeGame(room: Int) {
-        activeGameRooms[room] = nil
+    func removeRoom(room: Int) {
+        rooms[room] = nil
     }
 }

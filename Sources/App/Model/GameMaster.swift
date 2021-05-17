@@ -7,21 +7,33 @@
 
 import Foundation
 
-final class GameMaster: CanAccessNetwork {
+final class GameMaster: Person {
     
     var email: String
-    var emailIsValidated: Bool = false
+    var emailIsValidated = false
     
-    let name: String
-    let id: UUID
+    var premiumUser = false
     
-    private let token: UUID? = nil
+    var maxPlayers: Int8 {
+        premiumUser ? 2 : 8
+    }
+     
+    var gameRoomKey: Int!
     
-    init(name: String, id: UUID, email: String) {
-        self.name = name
-        self.id = id
+    func createGameRoom() {
+        gameRoomKey = gameRoomsController.createRoom(for: self)
+    }
+    
+    func addPlayer(_ player: Player) {
+        guard gameRoomKey != nil else { fatalError("Trying to add a player to a non-existing room") }
         
+        gameRoomsController.rooms[gameRoomKey]?.addPlayer(player)
+    }
+    
+    init(person: Person, email: String) {
         self.email = email
+        
+        super.init(name: person.name, id: person.id)
         
         NetworkAccessController.validateEmail(for: self)
     }

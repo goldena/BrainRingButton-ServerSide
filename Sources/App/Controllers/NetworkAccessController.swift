@@ -11,7 +11,7 @@ final class NetworkAccessController {
     
     private static func getToken() -> UUID { UUID() }
     
-    static func grantAccess(for person: CanAccessNetwork, to room: Int) -> Result<UUID, Error> {
+    static func grantAccess(for person: Person, to room: Int) -> Result<UUID, Error> {
         return Result.success(getToken())
     }
     

@@ -17,7 +17,8 @@ func routes(_ app: Application) throws {
                 
 //        return "Player: \(name) with UUID: \(id) has joined the lobby: \(lobby) with the token: \(token)"
 
-        let player = Player(name: name, id: id)
+        let person = Person(name: name, id: id)
+        let player = Player(person: person)
         
         let tokenAsString = NetworkAccessController.grantAccess(for: player, to: lobby)
         

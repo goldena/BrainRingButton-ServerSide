@@ -9,12 +9,8 @@ import Foundation
 
 final class GameController {
     
-    // MARK: - Property(s)
-    private var gameMaster: GameMaster
     private var players: [UUID: Player] = [:]
-    
-    var room: Int
-    
+        
     func addPlayer(_ player: Player) {
         players[player.id] = player
     }
@@ -33,10 +29,5 @@ final class GameController {
     
     func finishGame() {
         players = [:]
-    }
-    
-    init(room: Int, gameMaster: GameMaster) {
-        self.room = room
-        self.gameMaster = gameMaster
-    }
+    }    
 }
