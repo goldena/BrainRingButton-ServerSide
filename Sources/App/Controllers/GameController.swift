@@ -7,9 +7,15 @@
 
 import Foundation
 
+enum gameStatus: String {
+    case gameStarted
+    case gamePaused
+    case gameOver
+}
+
 final class GameController {
     
-    private var players: [UUID: Player] = [:]
+    private(set) var players: [UUID: Player] = [:]
         
     func addPlayer(_ player: Player) {
         players[player.id] = player
@@ -20,14 +26,16 @@ final class GameController {
     }
     
     func startGame() {
-        
+        NetworkAccessController.notifyPlayers(players, about: .started)
     }
     
-    func newQuestion() {
-        
+    func pauseGame() {
+        NetworkAccessController.notifyPlayers(players, about: .paused)
     }
-    
+        
     func finishGame() {
+        NetworkAccessController.notifyPlayers(players, about: .gameOver)
+        
         players = [:]
     }    
 }

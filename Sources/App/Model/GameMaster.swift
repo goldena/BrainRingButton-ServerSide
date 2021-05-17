@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os.log
 
 final class GameMaster: Person {
     
@@ -25,7 +26,15 @@ final class GameMaster: Person {
     }
     
     func addPlayer(_ player: Player) {
-        guard gameRoomKey != nil else { fatalError("Trying to add a player to a non-existing room") }
+        guard let gameController = gameRoomsController.rooms[gameRoomKey] else { fatalError("Trying to add a player to a non-existing room") }
+        
+        guard gameController.players.count < maxPlayers else {
+            NSLog("Exceeding max players")
+            return
+        }
+        
+        #warning("Start here")
+        guard gameRoomsController.rooms[gameRoomKey]?.players.count
         
         gameRoomsController.rooms[gameRoomKey]?.addPlayer(player)
     }

@@ -11,7 +11,7 @@ final class GameRoomsController {
     
     var rooms: [Int: GameController] = [:]
     
-    // Add game, return a new Game Room number
+    // Find and empty room, return it's key
     func createRoom(for: GameMaster) -> Int {
         var newRoomKey = 0
         

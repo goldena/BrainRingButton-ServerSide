@@ -21,4 +21,6 @@ final class NetworkAccessController {
             gameMaster[keyPath: \GameMaster.emailIsValidated] = true
         }
     }
+    
+    static func notifyPlayers(players: , about: gameStatus)
 }
